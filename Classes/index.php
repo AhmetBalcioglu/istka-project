@@ -5,7 +5,7 @@ Okulda öğrenci ve öğretmenler olsun
 öğretmenin ad, soyad, yaş, branş, tecrübe bilgileri olsun
 öğrenci ile ortak olanlar aynı fonksiyondan erişilebilsin
 */
-class OrtakOzellikler
+abstract class OrtakOzellikler
 {
     protected $ad;
     protected $soyad;
@@ -18,10 +18,7 @@ class OrtakOzellikler
         $this->yas = $yas;
     }
 
-    public function getAd()
-    {
-        return $this->ad;
-    }
+    abstract public function getAd();
 
     public function getSoyad()
     {
@@ -41,11 +38,13 @@ class Ogretmen extends OrtakOzellikler
 
     public function __construct($ad, $soyad, $yas, $brans, $tecrube)
     {
-        $this->ad = $ad;
-        $this->soyad = $soyad;
-        $this->yas = $yas;
+        parent::__construct($ad, $soyad, $yas);
         $this->brans = $brans;
         $this->tecrube = $tecrube;
+    }
+    public function getAd()
+    {
+        return $this->ad;
     }
 
     public function getBrans()
@@ -70,11 +69,13 @@ class Ogrenci extends OrtakOzellikler
 
     public function __construct($ad, $soyad, $yas, $numara, $sinif)
     {
-        $this->ad = $ad;
-        $this->soyad = $soyad;
-        $this->yas = $yas;
+        parent::__construct($ad, $soyad, $yas);
         $this->numara = $numara;
         $this->sinif = $sinif;
+    }
+    public function getAd()
+    {
+        return $this->ad;
     }
 
     public function getNumara()
@@ -92,12 +93,36 @@ class Ogrenci extends OrtakOzellikler
     }
 }
 
-$ogretmen = new Ogretmen("Mesut", "Öztürk", 30, "Bilgisayar", 10);
-$ogrenci = new Ogrenci("Ahmet", "Balcıoğlu", 22, 123456, "12C");
 
-$ogretmen->ekranaYaz();
-echo "<br>";
-$ogrenci->ekranaYaz();
+
+class Okul
+{
+    private $ogrencilerArr = [];
+
+    public function ogrenciEkle(Ogrenci $ogrenci)
+    {
+        $this->ogrencilerArr[] = $ogrenci;
+    }
+
+    public function ogrencileriListele()
+    {
+        foreach ($this->ogrencilerArr as $ogrenci) {
+            $ogrenci->ekranaYaz();
+            echo "<br>";
+        }
+    }
+}
+
+$ogretmen1 = new Ogretmen("Mesut", "Öztürk", 30, "Bilgisayar", 10);
+$ogrenci1 = new Ogrenci("Ahmet", "Balcıoğlu", 22, 123456, "12C");
+$ogrenci2 = new Ogrenci("Mehmet", "Şimşek", 24, 123, "11A");
+$ogrenci3 = new Ogrenci("Zeynep", "Kara", 21, 12345, "10D");
+
+$okul = new Okul();
+$okul->ogrenciEkle($ogrenci1);
+$okul->ogrenciEkle($ogrenci2);
+$okul->ogrenciEkle($ogrenci3);
+$okul->ogrencileriListele();
 
 ?>
 
