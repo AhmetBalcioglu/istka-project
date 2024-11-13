@@ -7,7 +7,9 @@ $myFile = fopen("text.txt", "r");
 echo fread($myFile, filesize("text.txt"));
 fclose($myFile);
 */
-
+$file = fopen("text.txt", "r");
+echo fread($file, filesize("text.txt"));
+fclose($file);
 
 
 ?>
