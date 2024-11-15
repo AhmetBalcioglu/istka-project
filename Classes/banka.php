@@ -37,6 +37,7 @@ class Banka
             echo "Para miktarı 0'dan büyük olmalıdır.<br>";
         }
     }
+
     #Hesaptan para çekme
     public function withdraw($amount)
     {
@@ -72,9 +73,8 @@ class Banka
             }
         }
     }
-
-    
 }
+
 #Para yatırma örneği
 $customer1 = new Banka("TR12 0006 1005 1978 6457 8413 01", "Ahmet Balcıoğlu", 5000);
 $customer1->hesapBilgileri();
