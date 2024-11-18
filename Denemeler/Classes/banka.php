@@ -79,31 +79,15 @@ class Banka
 $customer1 = new Banka("TR12 0006 1005 1978 6457 8413 01", "Ahmet Balcıoğlu", 5000);
 $customer1->hesapBilgileri();
 echo "Toplam Hesap Sayısı: " . $customer1->getTotalAccounts() . "<br><br>";
-$customer1->deposit(1000);
+$customer1->deposit(1000); # 1000 TL yatırıldı
 echo "<br>";
 
 #Para çekme örneği
 $customer2 = new Banka("TR15 0486 4855 4617 1685 1669 46", "Mehmet Şimşek", 10000);
 $customer2->hesapBilgileri();
 echo "Toplam Hesap Sayısı: " . $customer2->getTotalAccounts() . "<br><br>";
-$customer2->withdraw(2500);
+$customer2->withdraw(2500); # 2500 TL çekildi
 echo "<br>";
 
 #Para transferi örneği
-$customer1->transfer(2500, $customer2);
-
-?>
-<!DOCTYPE html>
-<html lang="tr">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
-<body style="background-color: rgb(150,150,150);">
-
-</body>
-
-</html>
+$customer1->transfer(2500, $customer2); # 2500 TL transfer edildi
